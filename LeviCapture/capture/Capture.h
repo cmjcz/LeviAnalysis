@@ -20,7 +20,6 @@
 #include "VideoLoader.h"
 #include "MovementVideoRetriever.h"
 #include "VideoSource.h"
-#include "CaptureController.h"
 #include "Lens.h"
 #include "ImageCorrector.h"
 #include "VideoCsvSaver.h"

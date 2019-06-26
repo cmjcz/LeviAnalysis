@@ -11,7 +11,6 @@
 #define CAMERA_CSV_SAVER_H
 
 #include "VideoSaver.h"
-#include "Camera.h"
 #include "FrameBuffer.h"
 #include "BeadDetector.h"
 #include "MovementAnalysor.h"

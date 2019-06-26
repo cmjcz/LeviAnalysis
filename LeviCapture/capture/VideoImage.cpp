@@ -1,5 +1,4 @@
 #include "VideoImageSaver.h"
-#include "Camera.h"
 #include "FrameBuffer.h"
 #include "Log.h"
 

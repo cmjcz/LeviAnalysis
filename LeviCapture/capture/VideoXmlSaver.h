@@ -12,7 +12,6 @@
 #define CAMERA_XML_SAVER_H
 
 #include "VideoSaver.h"
-#include "Camera.h"
 #include "FrameBuffer.h"
 #include "BeadDetector.h"
 

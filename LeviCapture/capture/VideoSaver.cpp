@@ -1,7 +1,6 @@
 #include "VideoSaver.h"
 
 #include "log.h"
-#include "camera.h"
 #include <thread>
 #include <chrono>
 #include <ctime>    

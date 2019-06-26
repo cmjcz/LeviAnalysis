@@ -11,7 +11,7 @@
 #ifndef CAMERA_IMAGE_SAVER_H
 #define CAMERA_IMAGE_SAVER_H
 
-#include "Camera.h"
+#include "ImageSaver.h"
 #include "VideoSaver.h"
 
 namespace capture {

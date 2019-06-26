@@ -13,7 +13,6 @@
 #ifndef SAVER_H
 #define SAVER_H
 
-#include "Camera.h"
 #include "opencv2/core/core.hpp"
 #include "Frame.h"
 #include <string>

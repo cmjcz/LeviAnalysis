@@ -1,6 +1,5 @@
 
 #include "VideoXmlSaver.h"
-#include "Camera.h"
 #include <fstream>
 #include "Bead.h"
 #include <sstream>
