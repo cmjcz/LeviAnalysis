@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{b538602c-2217-48b1-9a79-8e90131d260b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{889d9e31-49f5-44ac-a55a-a35064f3a10b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="capture\VideoSource.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\Camera.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoLoader.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\MovementVideoRetriever.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\Frame.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\Capture.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\MovementAnalysor.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoWindow.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoSaver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoImageSaver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoXmlSaver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ImageSaver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\FrameBuffer.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\Bead.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\log.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\BeadDetector.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\CaptureController.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\ImageCorrector.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\Lens.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="capture\VideoCsvSaver.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="capture\VideoSource.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\Camera.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoImage.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoLoader.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\MovementVideoRetriever.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoSaver.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\MovementAnalysor.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoXmlSaver.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoWindow.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ImageSaver.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\FrameBuffer.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\BeadDetector.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\Bead.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="capture\CaptureController.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\ImageCorrector.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\VideoCsvSaver.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
