@@ -41,3 +41,8 @@ Frame* FramesVideoSource::getNextRawFrame() {
 	else _currentIndex = 0;
 	return getRawFrame(i);
 }
+
+
+unsigned int FramesVideoSource::size() {
+	return _frames.size();
+}

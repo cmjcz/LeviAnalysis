@@ -25,6 +25,7 @@ namespace capture {
 
 		Frame* getFrame(unsigned long frameNo);
 		Frame* getNextFrame() ;
+		virtual unsigned int size() = 0;
 	private:
 		Lens* _lens;
 	protected:
@@ -38,6 +39,7 @@ namespace capture {
 	public:
 		FramesVideoSource(std::vector<Frame*> frames, resolution res, Lens* lens = nullptr);
 		virtual ~FramesVideoSource();
+		virtual unsigned int size();
 	private:
 		std::vector<Frame*> _frames;
 		unsigned int _currentIndex;

@@ -26,6 +26,6 @@ int main(int argc, char* argv[]) {
 	delete base;
 	MovementVideoLoader* loader = new MovementVideoLoader(videoSource, analysor);
 	VideoCsvSaver saver(loader, 1000);
-	saver.saveVideo(0, 3177);
+	saver.saveVideo(0, videoSource.size());
 	return 0;
 }

@@ -59,3 +59,7 @@ Frame* FileVideoSource::getNextRawFrame() {
 	if (_currentIndex >= _files.size()) _currentIndex = 0;
 	return getRawFrame(index);
 }
+
+unsigned int FileVideoSource::size() {
+	return _files.size();
+}
