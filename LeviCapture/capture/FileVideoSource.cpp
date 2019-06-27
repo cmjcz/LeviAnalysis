@@ -5,26 +5,43 @@
 #include "opencv2/core/utility.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
-#include "iostream"
 namespace fs = std::experimental::filesystem;
 
 using namespace capture;
 
-FileVideoSource::FileVideoSource(std::string folderName, std::string ext, Lens* lens) : 
-	VideoSource(lens), _folderName(folderName), _currentIndex(0), _ext(ext) {
+#define NB_FORMATS 13
+
+std::string const supportedFormats[NB_FORMATS] =
+{ "jpeg", "jpg", "jpe",
+	"bmp", "dib", "png",
+	"pbm", "pgm", "ppm",
+	"sr", "ras", "tiff", "tif" };
+
+static bool isEndingBy(std::string const& base, std::string const& end) {
+	size_t baseLength = base.length(), endLength = end.length();
+	if (baseLength >= endLength) return (0 == base.compare(baseLength - endLength, endLength, end));
+	return false;
+}
+
+static bool isASupportedFormat(std::string const& path) {	
+	unsigned int i = 0;
+	bool isSupported = false;
+	while (!isSupported && i < NB_FORMATS) {
+		isSupported = isEndingBy(path, "." + supportedFormats[i]);
+		++i;
+	}
+	return isSupported;
+}
+
+FileVideoSource::FileVideoSource(std::string folderName, resolution res, Lens* lens) : 
+	VideoSource(res, lens), _folderName(folderName), _currentIndex(0) {
 	std::smatch matches;
 	for (const auto& file : fs::directory_iterator(folderName)) {
 		std::string path = file.path().string();
-		if (path.find(ext) != std::string::npos) {
+		if (isASupportedFormat(path) != std::string::npos) {
 			std::vector<std::string>::iterator it = std::lower_bound(_files.begin(), _files.end(), path);
 			_files.insert(it, path);
-			std::cout << path << std::endl;
 		}
-	}
-	if (_files.size() > 0) {
-		std::string path = _files[0];
-		cv::Mat mat = cv::imread(path, cv::ImreadModes::IMREAD_GRAYSCALE);
-		_res = { unsigned int(mat.cols), unsigned int(mat.rows) };
 	}
 }
 

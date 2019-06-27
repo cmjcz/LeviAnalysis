@@ -10,7 +10,8 @@ MovementVideoLoader::~MovementVideoLoader() {
 }
 
 unsigned long MovementVideoLoader::findFirstFrame(unsigned long startFrame, unsigned long endFrame) const {
-	if (endFrame - startFrame < 2) return startFrame;
+	if (endFrame - startFrame < 2) 
+		return startFrame;
 	unsigned long currentFrame = (endFrame + startFrame) / 2;
 	unsigned short int errNo;
 	resolution res = _videoSource.getResolution();
@@ -19,7 +20,6 @@ unsigned long MovementVideoLoader::findFirstFrame(unsigned long startFrame, unsi
 		return -1;
 	}
 	cv::Mat ocvframe = frame->toOpenCvMat();
-
 	bool moved = _movementDetector->hasMoved(ocvframe);
 	if (moved) {
 		return findFirstFrame(startFrame, currentFrame);

@@ -6,7 +6,7 @@ FrameBuffer::FrameBuffer(unsigned int nbMaxElemen) : _nbMaxElem(nbMaxElemen), _w
 void FrameBuffer::push(Frame* element, unsigned long no) {
 	bool canPush;
 	do {
-		canPush = _buffer.size() > _nbMaxElem;
+		canPush = _buffer.size() < _nbMaxElem;
 		std::unique_lock<std::mutex> mlock(_mutex);
 		if(canPush)
 			_buffer.push(IndexedFrame{ element, no });
