@@ -23,3 +23,4 @@
 #include "Lens.h"
 #include "ImageCorrector.h"
 #include "VideoCsvSaver.h"
+#include "FileVideoSource.h"

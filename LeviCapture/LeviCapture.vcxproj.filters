@@ -67,6 +67,9 @@
     <ClInclude Include="capture\VideoCsvSaver.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="capture\FileVideoSource.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="capture\VideoSource.cpp">
@@ -110,6 +113,9 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="capture\VideoCsvSaver.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="capture\FileVideoSource.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

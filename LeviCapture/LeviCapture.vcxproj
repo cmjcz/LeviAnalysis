@@ -22,6 +22,7 @@
     <ClInclude Include="capture\Bead.h" />
     <ClInclude Include="capture\BeadDetector.h" />
     <ClInclude Include="capture\Capture.h" />
+    <ClInclude Include="capture\FileVideoSource.h" />
     <ClInclude Include="capture\Frame.h" />
     <ClInclude Include="capture\FrameBuffer.h" />
     <ClInclude Include="capture\ImageCorrector.h" />
@@ -41,6 +42,7 @@
   <ItemGroup>
     <ClCompile Include="capture\Bead.cpp" />
     <ClCompile Include="capture\BeadDetector.cpp" />
+    <ClCompile Include="capture\FileVideoSource.cpp" />
     <ClCompile Include="capture\FrameBuffer.cpp" />
     <ClCompile Include="capture\ImageCorrector.cpp" />
     <ClCompile Include="capture\ImageSaver.cpp" />

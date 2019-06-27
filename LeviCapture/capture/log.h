@@ -21,19 +21,19 @@ namespace capture {
 	}
 
 	inline void logInfo(const std::string msg) {
-		log("[CAPTURE INFO]", msg, std::cout);
+		log("[ANALYSIS INFO]", msg, std::cout);
 	}
 
 	inline void logError(const std::string msg) {
-		log("[CAPTURE ERROR]", msg, std::cerr);
+		log("[ANALYSIS ERROR]", msg, std::cerr);
 	}
 
 	inline void logWarning(const std::string msg) {
-		log("[CAPTURE WARNING]", msg, std::cerr);
+		log("[ANALYSIS WARNING]", msg, std::cerr);
 	}
 
 	inline void waitForAction(const std::string msg) {
-		log("[CAPTURE ACTION]", msg + " Press enter to continue", std::cout);
+		log("[ANALYSIS ACTION]", msg + " Press enter to continue", std::cout);
 		std::cin.ignore();
 	}
 }
