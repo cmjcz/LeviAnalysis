@@ -34,6 +34,7 @@ namespace capture {
 
 	class FrameBuffer {
 	public:
+		FrameBuffer(unsigned int nbMaxElem = 1000);
 		void push(Frame* element, unsigned long no);
 		IndexedFrame pop();
 		size_t size() const;
@@ -45,6 +46,7 @@ namespace capture {
 		std::mutex _mutex;
 		std::condition_variable _cond;
 		bool _writtingFinished;
+		unsigned int _nbMaxElem;
 	};
 }
 

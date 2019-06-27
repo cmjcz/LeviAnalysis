@@ -1,11 +1,18 @@
 #include "FrameBuffer.h"
 #include "iostream"
 using namespace capture;
+FrameBuffer::FrameBuffer(unsigned int nbMaxElemen) : _nbMaxElem(nbMaxElemen), _writtingFinished(false) {}
+
 void FrameBuffer::push(Frame* element, unsigned long no) {
-	std::unique_lock<std::mutex> mlock(_mutex);
-	_buffer.push(IndexedFrame{element, no});
-	mlock.unlock();
-	_cond.notify_one();
+	bool canPush;
+	do {
+		canPush = _buffer.size() > _nbMaxElem;
+		std::unique_lock<std::mutex> mlock(_mutex);
+		if(canPush)
+			_buffer.push(IndexedFrame{ element, no });
+		mlock.unlock();
+		_cond.notify_one();
+	} while (!canPush);
 }
 
 IndexedFrame FrameBuffer::pop() {
