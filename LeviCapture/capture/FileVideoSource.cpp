@@ -10,8 +10,8 @@ namespace fs = std::experimental::filesystem;
 
 using namespace capture;
 
-FileVideoSource::FileVideoSource(std::string folderName, std::string ext, resolution res, Lens* lens) : 
-	VideoSource(res, lens), _folderName(folderName), _currentIndex(0), _ext(ext) {
+FileVideoSource::FileVideoSource(std::string folderName, std::string ext, Lens* lens) : 
+	VideoSource(lens), _folderName(folderName), _currentIndex(0), _ext(ext) {
 	std::smatch matches;
 	for (const auto& file : fs::directory_iterator(folderName)) {
 		std::string path = file.path().string();
@@ -20,6 +20,11 @@ FileVideoSource::FileVideoSource(std::string folderName, std::string ext, resolu
 			_files.insert(it, path);
 			std::cout << path << std::endl;
 		}
+	}
+	if (_files.size() > 0) {
+		std::string path = _files[0];
+		cv::Mat mat = cv::imread(path, cv::ImreadModes::IMREAD_GRAYSCALE);
+		_res = { unsigned int(mat.cols), unsigned int(mat.rows) };
 	}
 }
 

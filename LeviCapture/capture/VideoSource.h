@@ -18,6 +18,7 @@
 namespace capture {
 	class VideoSource {
 	public:
+		VideoSource(Lens* lens = nullptr);
 		VideoSource(resolution res, Lens* lens = nullptr);
 		virtual ~VideoSource();
 		resolution getResolution();

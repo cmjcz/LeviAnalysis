@@ -1,7 +1,7 @@
 #include "VideoSource.h"
 
 using namespace capture;
-
+VideoSource::VideoSource(Lens* lens) : _res({0, 0}), _lens(lens) {}
 VideoSource::VideoSource(resolution res, Lens* lens) : _res(res), _lens(lens) {}
 resolution VideoSource::getResolution() { return _res; }
 VideoSource::~VideoSource(){}

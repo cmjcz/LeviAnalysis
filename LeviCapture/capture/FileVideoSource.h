@@ -19,7 +19,7 @@
 namespace capture {
 	class FileVideoSource : public VideoSource {
 	public:
-		FileVideoSource(std::string folderName, std::string ext, resolution res, Lens* lens = nullptr);
+		FileVideoSource(std::string folderName, std::string ext, Lens* lens = nullptr);
 		virtual ~FileVideoSource();
 	private:
 		std::string _folderName, _ext;
