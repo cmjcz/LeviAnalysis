@@ -3,7 +3,7 @@
 #include <ctype.h>
 namespace fs = std::experimental::filesystem;
 
-#define EXPECTED_ARG_NB 9
+#define EXPECTED_ARG_NB 10
 #define separator "/"
 
 using namespace capture;
@@ -12,12 +12,12 @@ using namespace std;
 int main(int argc, char* argv[]) {
 	// Parameters analysis
 	if (argc < EXPECTED_ARG_NB) {
-		logError(to_string(EXPECTED_ARG_NB - 1) + " argmuments needed : [path] [out folder] [back frame name] [mesure frame name] [background width in mm] [background height in mm] [bead diameter in mm] [framerate]");
+		logError(to_string(EXPECTED_ARG_NB - 1) + " argmuments needed : [data path] [frames directory name] [back frame name] [mesure frame name] [output folder] [background width in mm] [background height in mm] [bead diameter in mm] [framerate]");
 		return 1;
 	}
-	string path = argv[1], out_folder = argv[2], back_frame = argv[3], mesure_frame = argv[4];
+	string path = argv[1], out_folder = argv[2], back_frame = argv[3], mesure_frame = argv[4], out_path = argv[5];
 	unsigned int values[EXPECTED_ARG_NB - 2];
-	for (unsigned int i = 5; i < EXPECTED_ARG_NB; ++i) {
+	for (unsigned int i = 6; i < EXPECTED_ARG_NB; ++i) {
 		string arg = string(argv[i]);
 		if (!arg.empty() && arg.find_first_not_of("0123456789") == std::string::npos) {
 			values[i - 2] = stoi(arg);
@@ -37,6 +37,10 @@ int main(int argc, char* argv[]) {
 	}
 	if (!fs::exists(path + separator + back_frame) || !fs::exists(path + separator + mesure_frame)) {
 		logError("File not found. Please check the name of the back frame or the mesure frame.");
+		return 1;
+	}
+	if (!fs::exists(out_path)) {
+		logError("File not found. Please check the output directory");
 		return 1;
 	}
 
@@ -62,7 +66,7 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	logInfo("Starting to export");
-	saver.saveVideo(0, size);
+	saver.saveVideo("D:", 0, size);
 	logInfo("Done !");
 	return 0;
 }

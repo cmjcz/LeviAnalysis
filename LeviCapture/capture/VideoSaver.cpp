@@ -15,14 +15,14 @@ using namespace std;
 
 VideoSaver::VideoSaver(VideoLoader* videoRetriever) : _videoRetriever(videoRetriever){}
 VideoSaver::~VideoSaver() {}
-bool VideoSaver::saveVideo(unsigned long startFrame, unsigned long endFrame) {
+bool VideoSaver::saveVideo(std::string path, long startFrame, unsigned long endFrame) {
 	thread retrieveImagesThread(&VideoLoader::retrieveImages, _videoRetriever, std::ref(_buffer), startFrame, endFrame);
 
 	std::time_t const now = std::time(0);
 	struct tm time;
 	localtime_s(&time, &now);
 	std::stringstream folderNameSS; 
-	folderNameSS << "D:\\out-" << std::put_time(&time, "%y-%b-%d-%H-%M");
+	folderNameSS << path << "/out-" << std::put_time(&time, "%y-%b-%d-%H-%M");
 	std::string folderName = folderNameSS.str();
 	if (!CreateDirectory(folderName.c_str(), NULL)) return false;
 	unsigned int pause = 10;
