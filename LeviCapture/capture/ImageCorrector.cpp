@@ -48,7 +48,7 @@ Frame* HomographyLens::correctFrame(Frame const* frame) const {
 	cv::Mat sourceImage = frame->toOpenCvMat();
 	delete frame;
 	cv::subtract(sourceImage, _backgroundFrame, sourceImage);
-	cv::add(sourceImage, _mesureFrame, sourceImage); // Because we are using only black and white, we don't have to worry about color addition
+	//cv::add(sourceImage, _mesureFrame, sourceImage); // Because we are using only black and white, we don't have to worry about color addition
 	cv::threshold(sourceImage, sourceImage, 90, 200, CV_THRESH_BINARY);
 	unsigned int rows = sourceImage.cols / 2, cols = sourceImage.cols;
 	cv::Size size(cols, rows);
