@@ -38,7 +38,7 @@ FileVideoSource::FileVideoSource(std::string folderName, resolution res, Lens* l
 	std::smatch matches;
 	for (const auto& file : fs::directory_iterator(folderName)) {
 		std::string path = file.path().string();
-		if (isASupportedFormat(path) != std::string::npos) {
+		if (isASupportedFormat(path)) {
 			std::vector<std::string>::iterator it = std::lower_bound(_files.begin(), _files.end(), path);
 			_files.insert(it, path);
 		}
@@ -60,6 +60,6 @@ Frame* FileVideoSource::getNextRawFrame() {
 	return getRawFrame(index);
 }
 
-unsigned int FileVideoSource::size() {
+std::size_t FileVideoSource::size() {
 	return _files.size();
 }

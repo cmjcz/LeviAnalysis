@@ -49,18 +49,19 @@ int main(int argc, char* argv[]) {
 	logInfo("Initalizing");
 	cv::Mat backMat = cv::imread(path + separator + back_frame, cv::ImreadModes::IMREAD_GRAYSCALE);
 	cv::Mat mesureMat = cv::imread(path + separator + mesure_frame, cv::ImreadModes::IMREAD_GRAYSCALE);
-	resolution res = {backMat.cols, backMat.rows};
+	resolution res = {unsigned int(backMat.cols), unsigned int(backMat.rows)};
 	Frame* backFrame = new MatFrame(backMat, res);
 	Frame* mesureFrame = new MatFrame(mesureMat, res);
 	HomographyLens* pLens = new HomographyLens(backFrame, mesureFrame);
 	FileVideoSource videoSource(path + separator + out_folder, res, pLens);
-	BeadDetector detector(back_width, back_height, bead_diameter);
+	BeadDetector detector(float(back_width), float(back_height), (float)bead_diameter);
 	Frame* base = videoSource.getFrame(0);
-	MovementAnalysor* analysor = new MovementAnalysor(base->toOpenCvMat(), detector);
+	cv::Mat baseMat = base->toOpenCvMat();
+	MovementAnalysor* analysor = new MovementAnalysor(baseMat, detector);
 	delete base;
 	MovementVideoLoader* loader = new MovementVideoLoader(videoSource, analysor);
 	VideoCsvSaver saver(loader, framerate);
-	unsigned int size = videoSource.size();
+	std::size_t size = videoSource.size();
 	if (0 == size) {
 		logError("Out folder empty !");
 		return 1;

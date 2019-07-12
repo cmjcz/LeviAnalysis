@@ -20,7 +20,7 @@ namespace capture {
 	public:
 		VideoSaver(VideoLoader* videoRetriever);
 		~VideoSaver();
-		bool saveVideo(std::string path, long startFrame, unsigned long endFrame);
+		bool saveVideo(std::string path, size_t startFrame, size_t endFrame);
 	protected:
 		FrameBuffer _buffer;
 		VideoLoader* _videoRetriever;

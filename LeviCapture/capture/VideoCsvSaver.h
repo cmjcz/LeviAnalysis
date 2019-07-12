@@ -32,7 +32,7 @@ namespace capture {
 
 		bool isFirstFrame = true;
 		cv::Mat firstFrame;
-		float previousTimeInMs = 0, previousVx = 0, previousVy = 0;
+		double previousTimeInMs = 0, previousVx = 0, previousVy = 0;
 		unsigned long firstFrameNo = 0;
 		movement_2d_vector mov = {0, 0}, previousMov = { 0, 0 };
 	};

@@ -21,7 +21,7 @@ namespace capture {
 	public:
 		FileVideoSource(std::string folderName, resolution res, Lens* lens = nullptr);
 		virtual ~FileVideoSource();
-		virtual unsigned int size();
+		virtual std::size_t size();
 	private:
 		std::string _folderName;
 		std::vector<std::string> _files;

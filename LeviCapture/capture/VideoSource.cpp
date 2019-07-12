@@ -42,7 +42,6 @@ Frame* FramesVideoSource::getNextRawFrame() {
 	return getRawFrame(i);
 }
 
-
-unsigned int FramesVideoSource::size() {
+std::size_t FramesVideoSource::size() {
 	return _frames.size();
 }

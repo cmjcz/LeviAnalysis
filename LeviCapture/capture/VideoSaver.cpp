@@ -15,7 +15,7 @@ using namespace std;
 
 VideoSaver::VideoSaver(VideoLoader* videoRetriever) : _videoRetriever(videoRetriever){}
 VideoSaver::~VideoSaver() {}
-bool VideoSaver::saveVideo(std::string path, long startFrame, unsigned long endFrame) {
+bool VideoSaver::saveVideo(std::string path, size_t startFrame, size_t endFrame) {
 	thread retrieveImagesThread(&VideoLoader::retrieveImages, _videoRetriever, std::ref(_buffer), startFrame, endFrame);
 
 	std::time_t const now = std::time(0);

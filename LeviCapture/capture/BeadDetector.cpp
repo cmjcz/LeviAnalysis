@@ -23,7 +23,7 @@ Bead* BeadDetector::detectBead(cv::Mat const frame) const {
 	std::vector<cv::Vec4i> hierarchy;
 	cv::Canny(working_mat, working_mat, 0, 255, 3);//Reinforce edges
 	cv::findContours(working_mat, contours, hierarchy, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE, cv::Point(0, 0));
-	float imageWidth = frame.cols, imageHeight = frame.rows;//Frame size
+	int imageWidth = frame.cols, imageHeight = frame.rows;//Frame size
 	//2. Check if any blob is our bead
 	for (size_t i = 0; i < contours.size(); i++)
 	{
@@ -34,8 +34,8 @@ Bead* BeadDetector::detectBead(cv::Mat const frame) const {
 		cv::Point2f circleCentre;
 		float circleRadiusInPix, circleRadiusInMM;
 		cv::minEnclosingCircle(contours[i], circleCentre, circleRadiusInPix);
-		float widthRatio = float(_backgroundWidth / imageWidth);
-		float heightRatio = float(_backgroundHeight / imageHeight);
+		float widthRatio = float(float(_backgroundWidth) / imageWidth);
+		float heightRatio = float(float(_backgroundHeight) / imageHeight);
 		circleRadiusInMM = circleRadiusInPix * widthRatio;
 
 		//2.2. Circularity test

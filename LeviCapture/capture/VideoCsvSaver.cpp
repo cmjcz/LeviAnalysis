@@ -5,7 +5,7 @@
 using namespace capture;
 
 VideoCsvSaver::VideoCsvSaver(VideoLoader* videoRetriever, unsigned long framerate, unsigned int widthInMM, unsigned int heightInMM, unsigned int beadRadiusInMM)
-: _framerate(framerate), VideoSaver(videoRetriever), _beadDetector(BeadDetector(widthInMM, heightInMM, beadRadiusInMM)), _analysor(MovementAnalysor(_beadDetector, 10)) {}
+: _framerate(framerate), VideoSaver(videoRetriever), _beadDetector(BeadDetector(float(widthInMM), float(heightInMM), float(beadRadiusInMM))), _analysor(MovementAnalysor(_beadDetector, 10)) {}
 
 VideoCsvSaver::~VideoCsvSaver() {}
 
@@ -16,7 +16,7 @@ void VideoCsvSaver::beforeSave() {
 void VideoCsvSaver::saveOneFrame(std::string folderName, Frame* frame, unsigned long frameNo) {
 	cv::Mat frameMat = frame->toOpenCvMat();
 	delete frame;
-	float timeInMs = 0, Vx = 0, Vy = 0, Ax = 0, Ay = 0, dX, dY, dT, dVx, dVy;
+	double timeInMs = 0, Vx = 0, Vy = 0, Ax = 0, Ay = 0, dX, dY, dT, dVx, dVy;
 	if (isFirstFrame) {
 		firstFrame = frameMat.clone();
 		_analysor.setBase(firstFrame);
@@ -24,7 +24,7 @@ void VideoCsvSaver::saveOneFrame(std::string folderName, Frame* frame, unsigned 
 	}
 	Bead* b = _beadDetector.detectBead(frameMat);
 	if (b) {
-		timeInMs = (float(frameNo) - firstFrameNo) / _framerate * 1000;
+		timeInMs = (double(frameNo) - firstFrameNo) / _framerate * 1000;
 		mov = _analysor.findRelativePositionInMm(*b);
 		if (isFirstFrame) previousMov = mov;
 
