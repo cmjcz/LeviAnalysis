@@ -4,6 +4,7 @@
 namespace fs = std::experimental::filesystem;
 
 #define EXPECTED_ARG_NB 10
+#define NB_INT_ARGS 4
 #define separator "/"
 
 using namespace capture;
@@ -16,19 +17,20 @@ int main(int argc, char* argv[]) {
 		return 1;
 	}
 	string path = argv[1], out_folder = argv[2], back_frame = argv[3], mesure_frame = argv[4], out_path = argv[5];
-	unsigned int values[EXPECTED_ARG_NB - 2];
-	for (unsigned int i = 6; i < EXPECTED_ARG_NB; ++i) {
+	unsigned int values[NB_INT_ARGS];
+	for (unsigned int i = EXPECTED_ARG_NB - NB_INT_ARGS; i < EXPECTED_ARG_NB; ++i) {
 		string arg = string(argv[i]);
 		if (!arg.empty() && arg.find_first_not_of("0123456789") == std::string::npos) {
-			values[i - 2] = stoi(arg);
+			values[i - EXPECTED_ARG_NB + NB_INT_ARGS] = stoi(arg);
 		}
 		else {
 			logError("Invalid argument. You must provide an unsigned integer at position " + to_string(i));
 			return 1;
 		}
 	}
-	unsigned int back_width = values[0], 
-		back_height = values[1], bead_diameter = values[2], framerate = values[3];
+	float back_width = float(values[0]),
+		back_height = float(values[1]), bead_diameter = float(values[2]);
+	unsigned long framerate = values[3];
 	bool isCorrectFolder = false;
 	if (fs::exists(path)) isCorrectFolder = fs::is_directory(path);
 	if (!isCorrectFolder) {
@@ -54,7 +56,7 @@ int main(int argc, char* argv[]) {
 	Frame* mesureFrame = new MatFrame(mesureMat, res);
 	HomographyLens* pLens = new HomographyLens(backFrame, mesureFrame);
 	FileVideoSource videoSource(path + separator + out_folder, res, pLens);
-	BeadDetector detector(float(back_width), float(back_height), (float)bead_diameter);
+	BeadDetector detector(back_width, back_height, bead_diameter);
 	Frame* base = videoSource.getFrame(0);
 	cv::Mat baseMat = base->toOpenCvMat();
 	MovementAnalysor* analysor = new MovementAnalysor(baseMat, detector);
