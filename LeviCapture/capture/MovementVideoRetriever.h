@@ -17,13 +17,14 @@
 namespace capture {
 	class MovementVideoLoader : public VideoLoader {
 	public:
-		MovementVideoLoader(VideoSource& videoSource, MovementAnalysor* movementDetector);
+		MovementVideoLoader(VideoSource& videoSource, MovementAnalysor* movementDetector, unsigned int delta_in_px);
 		~MovementVideoLoader();
 	protected:
 		virtual unsigned long findFirstFrame(unsigned long startFrame, unsigned long endFrame) const;
 		virtual unsigned long saveUntilLastFrame(FrameBuffer& pBuffer, unsigned long startFrame, unsigned long endFrame) const;
 	private:
 		MovementAnalysor* _movementDetector;
+		unsigned int _delta_in_px;
 	};
 }
 

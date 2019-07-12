@@ -59,10 +59,11 @@ int main(int argc, char* argv[]) {
 	BeadDetector detector(back_width, back_height, bead_diameter);
 	Frame* base = videoSource.getFrame(0);
 	cv::Mat baseMat = base->toOpenCvMat();
-	MovementAnalysor* analysor = new MovementAnalysor(baseMat, detector);
+	MovementAnalysor* analysor = new MovementAnalysor(baseMat, detector, 5);
 	delete base;
-	MovementVideoLoader* loader = new MovementVideoLoader(videoSource, analysor);
+	MovementVideoLoader* loader = new MovementVideoLoader(videoSource, analysor, 48);
 	VideoCsvSaver saver(loader, framerate);
+	//CameraImageSaver saver(loader, new JpegSaver(resolution{unsigned(baseMat.cols), unsigned(baseMat.rows)}));
 	std::size_t size = videoSource.size();
 	if (0 == size) {
 		logError("Out folder empty !");

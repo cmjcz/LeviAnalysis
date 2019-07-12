@@ -3,8 +3,8 @@
 
 using namespace capture;
 
-MovementVideoLoader::MovementVideoLoader(VideoSource& videoSource, MovementAnalysor* movementDetector) : 
-	VideoLoader(videoSource), _movementDetector(movementDetector) {}
+MovementVideoLoader::MovementVideoLoader(VideoSource& videoSource, MovementAnalysor* movementDetector, unsigned int delta_in_px) : 
+	VideoLoader(videoSource), _movementDetector(movementDetector), _delta_in_px(delta_in_px) {}
 MovementVideoLoader::~MovementVideoLoader() {
 	delete _movementDetector;
 }
@@ -35,7 +35,6 @@ unsigned long MovementVideoLoader::saveUntilLastFrame(FrameBuffer& pBuffer, unsi
 	unsigned short int errNo;
 	resolution res = _videoSource.getResolution();
 	double max = 0; 
-	unsigned int delta_in_px = 10;
 	while (!found && frameNo < endFrame) {
 		Frame* frame = _videoSource.getFrame(frameNo);
 		if (nullptr == frame) {
@@ -50,7 +49,7 @@ unsigned long MovementVideoLoader::saveUntilLastFrame(FrameBuffer& pBuffer, unsi
 			max = shifting;
 			maxFrameNo = frameNo;
 		}
-		else if (shifting < max - delta_in_px) {
+		else if (shifting < max - _delta_in_px) {
 			found = true; 
 			// If we are too far behing the maximum, 
 			// in our simple movemement this is because you are going behind. So we found the end of the movement

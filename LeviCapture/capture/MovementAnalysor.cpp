@@ -7,11 +7,11 @@
 using namespace capture;
 using namespace cv;
 
-MovementAnalysor::MovementAnalysor(BeadDetector& detector, float ignoreDeltaInPx) :
+MovementAnalysor::MovementAnalysor(BeadDetector& detector, unsigned int ignoreDeltaInPx) :
 	_beadDetector(detector), _ignoreDeltaInPx(ignoreDeltaInPx), _pBaseBead(nullptr) {
 }
 
-MovementAnalysor::MovementAnalysor(cv::Mat const base, BeadDetector& detector, float ignoreDeltaInPx) :
+MovementAnalysor::MovementAnalysor(cv::Mat const base, BeadDetector& detector, unsigned int ignoreDeltaInPx) :
 	MovementAnalysor(detector, ignoreDeltaInPx) {
 	setBase(base);
 }

@@ -31,8 +31,8 @@ namespace capture {
 
 	class MovementAnalysor {
 	public:
-		MovementAnalysor(cv::Mat const base, BeadDetector& detector, float ignoreDeltaInPx = 10);
-		MovementAnalysor(BeadDetector& detector, float ignoreDeltaInPx = 10);
+		MovementAnalysor(cv::Mat const base, BeadDetector& detector, unsigned int ignoreDeltaInPx);
+		MovementAnalysor(BeadDetector& detector, unsigned int ignoreDeltaInPx);
 		~MovementAnalysor();
 		bool hasMoved(cv::Mat const newFrame) const;
 		movement_2d_vector findRelativePositionInPx(cv::Mat const newFrame) const;
